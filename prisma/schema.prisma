@@ -18,4 +18,6 @@ model usuario {
   nome String
   email String @unique
   senha String
+  username String
+  avatar String
 }
