@@ -8,9 +8,7 @@ services:
      - ..:/workspace:cached
     command: tail -f /dev/null
     ports:
-      - "8080:8080"
-
- 
+      - "8080:8080" 
   mariadb:
     image: mariadb:latest 
     container_name: mariadb
@@ -24,17 +22,13 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
-
-    phpmyadmin:
-    image: phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    environment:
-      - PMA_HOST=mariadb
-      - MYSQL_ROOT_PASSWORD=root
-    ports:
-      - "80:80"
-
-
-  -
+  phpmyadmin:
+      image: phpmyadmin
+      container_name: phpmyadmin
+      restart: always
+      environment:
+        - PMA_HOST=mariadb
+        - MYSQL_ROOT_PASSWORD=root
+      ports:
+        - "80:80"
 
