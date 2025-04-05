@@ -21,3 +21,16 @@ model usuario {
   username String
   avatar String
 }
+
+enum Status{
+  criado 
+  andamento
+  finalizado
+}
+model conexao{
+  id Int @id @default(autoincrement())
+  id_usuario Int
+  id_usuario_a Int
+  data_solicitacao DateTime @default(now())
+  status Status @default(criado)
+}
