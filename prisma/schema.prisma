@@ -3,7 +3,6 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,23 +13,39 @@ datasource db {
 }
 
 model usuario {
-  id   Int @id @default(autoincrement())
-  nome String
-  email String @unique
-  senha String
-  username String
-  avatar String
+  id          Int     @id @default(autoincrement())
+  nome        String
+  email       String  @unique
+  senha       String
+  username    String
+  avatar      String
 }
 
-enum Status{
-  criado 
+enum Status {
+  criado
   andamento
   finalizado
 }
-model conexao{
-  id Int @id @default(autoincrement())
-  id_usuario Int
-  id_usuario_a Int
+
+model conexao {
+  id              Int      @id @default(autoincrement())
+  id_usuario_a    Int
+  id_usuario_b    Int //1.c transformar esta coluna em uma coluna nullable (pode criar a linha sem este valor)
   data_solicitacao DateTime @default(now())
-  status Status @default(criado)
+  status          Status   @default(criado)
+}
+
+enum PecaDoJogador{
+  x
+  o
+}
+
+model partida_historico{
+  id Int @id @default(autoincrement())
+  id_partida Int
+  id_usuario Int
+  area_jogada Int
+  peca_do_jogador PecaDoJogador
+  data_solicitacao DateTime @default(now())
+
 }
